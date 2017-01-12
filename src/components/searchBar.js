@@ -40,7 +40,7 @@ class SearchBar extends Component {
         <div>
             <div>
                 <input ref={node => (this._input = node)} onChange={this.handleInput}/>
-                <button onClick={this.pushItems}>add</button>
+                <button className="btn" onClick={this.pushItems}>add</button>
             </div>
             <div>
                 {this.state.itemText.map((value, index) => {
