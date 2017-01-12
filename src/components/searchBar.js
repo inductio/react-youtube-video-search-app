@@ -7,7 +7,7 @@ class SearchBar extends Component {
 
         this.state = {
             inputValue: 'Trololo',
-            itemText: ['dsf ', 'qwqdqwd ', 'asdasdasd ']
+            itemText: ['dsf', 'qwqdqwd', 'asdasdasd']
         };
 
         this.handleInput = this.handleInput.bind(this);
@@ -21,7 +21,7 @@ class SearchBar extends Component {
 
     handleInput(e) {
         this.setState({
-            inputValue: e.target.value
+            inputValue: e.target.value.trim()
         })
     }
 
@@ -39,10 +39,17 @@ class SearchBar extends Component {
         return (
         <div>
             <div>
-                <input ref={node => (this._input = node)} onChange={this.handleInput}/><button onClick={this.pushItems}>add</button>
+                <input ref={node => (this._input = node)} onChange={this.handleInput}/>
+                <button onClick={this.pushItems}>add</button>
             </div>
             <div>
-                {this.state.itemText}
+                {this.state.itemText.map((value, index) => {
+                    return (
+                        <div key={index}>
+                            {value}
+                        </div>
+                    );
+                })}
             </div>
         </div>
         );
