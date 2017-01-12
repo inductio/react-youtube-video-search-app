@@ -11,12 +11,8 @@ class SearchBar extends Component {
         };
 
         this.handleInput = this.handleInput.bind(this);
-        this.pushItems = this.pushItems.bind(this);
+        this.callSearch = this.callSearch.bind(this);
         this.itemText = [];
-    }
-
-    componentDidUpdate() {
-
     }
 
     handleInput(e) {
@@ -25,14 +21,10 @@ class SearchBar extends Component {
         })
     }
 
-    pushItems() {
-        this.itemText.push(<div>{this.state.inputValue}</div>);
-        this.setState({
-            itemText: this.itemText,
-            inputValue: ''
-        });
-
+    callSearch() {
         this._input.value = '';
+
+        return this.props.onVideoSearch(this.state.inputValue);
     }
 
     render() {
@@ -40,13 +32,9 @@ class SearchBar extends Component {
             <div className="search-bar">
                 <div>
                     <input ref={node => (this._input = node)} onChange={this.handleInput}/>
-                    <button className="btn-small" onClick={this.pushItems}>Search videos...</button>
+                    <button className="btn-small" onClick={this.callSearch}>Search videos...</button>
                 </div>
                 <div>
-                    {this.state.inputValue
-                        ? <h4>Search history:</h4>
-                        : null
-                    }
                     {this.state.itemText.map((value, index) => {
                         return (
                             <div className="history" key={index}>

@@ -14,12 +14,19 @@ class App extends Component {
         super(props);
         this.state = {
             videos: [],
-            selectedVideo: null
+            selectedVideo: null,
+            searchValue: 'js',
         };
-        YTSearch({
-            key: API_KEY,
-            term: 'react js'
-        }, ( videos ) =>
+        this.getVideos = this.getVideos.bind(this);
+    }
+
+    componentDidMount() {
+        this.getVideos('javascript');
+    }
+
+    getVideos(term) {
+        YTSearch({key: API_KEY, term},
+            ( videos ) =>
             {this.setState({
                 videos,
                 selectedVideo: videos[0]
@@ -31,7 +38,8 @@ class App extends Component {
 
         return (
             <div>
-                <SearchBar/>
+                <SearchBar onVideoSearch={searchValue => this.getVideos(searchValue)}
+                />
                 <VideoDetail
                     video={this.state.selectedVideo}
                 />
