@@ -6,7 +6,7 @@ class SearchBar extends Component {
         super(props);
 
         this.state = {
-            inputValue: 'Trololo',
+            inputValue: '',
             itemText: []
         };
 
@@ -37,21 +37,25 @@ class SearchBar extends Component {
 
     render() {
         return (
-        <div>
-            <div>
-                <input ref={node => (this._input = node)} onChange={this.handleInput}/>
-                <button className="btn" onClick={this.pushItems}>add</button>
+            <div className="search-bar">
+                <div>
+                    <input ref={node => (this._input = node)} onChange={this.handleInput}/>
+                    <button className="btn-small" onClick={this.pushItems}>Search videos...</button>
+                </div>
+                <div>
+                    {this.state.inputValue
+                        ? <h4>Search history:</h4>
+                        : null
+                    }
+                    {this.state.itemText.map((value, index) => {
+                        return (
+                            <div className="history" key={index}>
+                                {value}
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
-            <div>
-                {this.state.itemText.map((value, index) => {
-                    return (
-                        <div key={index}>
-                            {value}
-                        </div>
-                    );
-                })}
-            </div>
-        </div>
         );
     };
 }
