@@ -21,7 +21,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.getVideos('javascript');
+        this.getVideos('');
     }
 
     getVideos(term) {
