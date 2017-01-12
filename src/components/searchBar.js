@@ -6,11 +6,17 @@ class SearchBar extends Component {
         super(props);
 
         this.state = {
-            inputValue: 'Trololo'
+            inputValue: 'Trololo',
+            itemText: ['dsf ', 'qwqdqwd ', 'asdasdasd ']
         };
 
-        super(props);
         this.handleInput = this.handleInput.bind(this);
+        this.pushItems = this.pushItems.bind(this);
+        this.itemText = [];
+    }
+
+    componentDidUpdate() {
+
     }
 
     handleInput(e) {
@@ -19,13 +25,25 @@ class SearchBar extends Component {
         })
     }
 
+    pushItems() {
+        this.itemText.push(<div>{this.state.inputValue}</div>);
+        this.setState({
+            itemText: this.itemText,
+            inputValue: ''
+        });
+
+        this._input.value = '';
+    }
+
     render() {
         return (
         <div>
-            <input ref="inputElement" onChange={this.handleInput}/>
-            <h1>
-                {this.state.inputValue}
-            </h1>
+            <div>
+                <input ref={node => (this._input = node)} onChange={this.handleInput}/><button onClick={this.pushItems}>add</button>
+            </div>
+            <div>
+                {this.state.itemText}
+            </div>
         </div>
         );
     };
