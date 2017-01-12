@@ -1,21 +1,15 @@
 import React from 'react';
+import VideoListItem from './videoListItem';
 
 const VideoList = (props) => {
 
-    const videos = props.videos;
+    const videoItems = props.videos.length ? props.videos.map((video, index) => {
+        return  <VideoListItem video={video} key={index} />
+    }) : null;
 
     return (
         <ul className="col-md-4 list-group">
-            {videos.length ?
-                videos.map((value, index) => {
-                     return (
-                         <li key={index}>
-                             <img src={value.snippet.thumbnails.default.url} alt="img"/>
-                         </li>
-                     );
-                })
-                : null
-            }
+            {videoItems}
         </ul>
     );
 };

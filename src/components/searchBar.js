@@ -7,7 +7,7 @@ class SearchBar extends Component {
 
         this.state = {
             inputValue: 'Trololo',
-            itemText: ['dsf', 'qwqdqwd', 'asdasdasd']
+            itemText: []
         };
 
         this.handleInput = this.handleInput.bind(this);
