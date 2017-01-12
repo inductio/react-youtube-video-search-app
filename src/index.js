@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
+import _ from 'lodash';
 import SearchBar from  './components/searchBar';
 import VideoList from  './components/VideoList';
 import VideoDetail from  './components/VideoDetail';
@@ -35,10 +35,10 @@ class App extends Component {
     }
 
     render() {
-
+        const videoSearch = _.debounce((searchValue) => {this.getVideos(searchValue)}, 500);
         return (
             <div>
-                <SearchBar onVideoSearch={searchValue => this.getVideos(searchValue)}
+                <SearchBar onVideoSearch={videoSearch}
                 />
                 <VideoDetail
                     video={this.state.selectedVideo}
